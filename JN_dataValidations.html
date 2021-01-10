@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Validations</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="JN_dateValidations.css">
+    <script>
+        $(document).ready(function(){
+            $('#to-date').datepicker({
+                minDate: 0,
+                dateFormat: 'm/d/yy',
+                showOn: 'button',
+                buttonImageOnly: true,
+                bottomImage: 'calendar.png'
+            });
+            $('#from-date').datepicker({
+                showOn: 'button',
+                buttonImageOnly: true,
+                bottomImage: 'calendar.png',
+                minDate: 0,
+                dateFormat: 'm/d/yy',
+                onSelect: function(dateText, inst){
+                    $('#to-date').datepicker("option", "minDate", $('#from-date').datepicker("getDate"));
+                }
+            });
+
+            $('#form-div').submit(function(){
+                if(!$('#from-date').val() && !$('#to-date').val() && !$('#first-name').val() && !$('#last-name').val() && !$('#email').val()){
+                    alert("Please select dates and fill out required fields");
+                    event.preventDefault();
+                }
+                if(!$('#first-name').val() || !$('#last-name').val() || !$('#email').val()){
+                    alert("Please fill out all required fields");
+                    event.preventDefault();
+                }
+                if(!$('#from-date').val() || !$('#to-date').val()){
+                    alert("Please select dates before submitting");
+                    event.preventDefault();
+                }
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <div id="wrapper">
+
+        <h1>Welcome to the Coding Dojo Plan-A-Cruise Page!</h1>
+
+        <p id="optional">*Optional</p>
+
+        <div id="form">
+
+            <form action="" id="form-div">
+                <p>
+                    <label for="from-date">From: </label>
+                    <input type="text" id="from-date">
+                </p>
+                <p>
+                    <label for="to-date">To: </label>
+                    <input type="text" id="to-date">
+                </p>
+                <p>
+                    <label for="first-name">First Name: </label>
+                    <input type="text" id="first-name">
+                </p>
+                <p>
+                    <label for="last-name">Last Name: </label>
+                    <input type="text" id="last-name">
+                </p>
+                <p>
+                    <label for="email">Email: </label>
+                    <input type="text" id="email">
+                </p>
+                <p>
+                    <label for="phone">Phone Number: </label>
+                    <input type="tel" id="phone">*
+                </p>
+                <input type="submit" value="Check Availability!" id="submit">
+            </form>
+
+        </div>
+
+    </div>
+</body>
+</html>
