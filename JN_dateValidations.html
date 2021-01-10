@@ -33,11 +33,11 @@
                     alert("Please select dates and fill out required fields");
                     event.preventDefault();
                 }
-                if(!$('#first-name').val() || !$('#last-name').val() || !$('#email').val()){
+                else if(!$('#first-name').val() || !$('#last-name').val() || !$('#email').val()){
                     alert("Please fill out all required fields");
                     event.preventDefault();
                 }
-                if(!$('#from-date').val() || !$('#to-date').val()){
+                else if(!$('#from-date').val() || !$('#to-date').val()){
                     alert("Please select dates before submitting");
                     event.preventDefault();
                 }
